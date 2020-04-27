@@ -1,25 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceProcess;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ServiceProcess;
 
-namespace Quartz.NET.WindowsService
-{
-    static class Program
-    {
+namespace Quartz.NET.WindowsService {
+    internal static class Program {
         /// <summary>
-        /// 应用程序的主入口点。
+        ///     应用程序的主入口点。
         /// </summary>
-        static void Main()
-        {
-            ServiceBase[] ServicesToRun;
-            ServicesToRun = new ServiceBase[]
-            {
+        private static void Main() {
+            var servicesToRun = new ServiceBase[] {
                 new Service1()
             };
-            ServiceBase.Run(ServicesToRun);
+            ServiceBase.Run(servicesToRun);
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using System;
 
-namespace Quartz.NET.Web.Models
-{
-    public class TaskOptions
-    {
+namespace Quartz.NET.Web.Models {
+    public class TaskOptions {
         public string TaskName { get; set; }
         public string GroupName { get; set; }
         public string Interval { get; set; }
