@@ -1,6 +1,9 @@
 ﻿using System;
 
 namespace Quartz.NET.Web.Models {
+    /// <summary>
+    /// 
+    /// </summary>
     public class TaskOptions {
         public string TaskName { get; set; }
         public string GroupName { get; set; }
