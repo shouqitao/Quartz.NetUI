@@ -15,7 +15,7 @@ using Quartz.NET.Web.Models;
 using Quartz.NET.Web.Utility;
 
 namespace Quartz.NET.Web.Extensions {
-    public static class QuartzNETExtension {
+    public static class QuartzNetExtension {
         private static List<TaskOptions> _taskList = new List<TaskOptions>();
 
         /// <summary>

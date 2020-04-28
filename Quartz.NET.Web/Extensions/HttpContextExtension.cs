@@ -19,9 +19,9 @@ namespace Quartz.NET.Web.Extensions {
         }
 
         /// <summary>
-        ///     是否为ajax请求
+        /// 是否为ajax请求
         /// </summary>
-        /// <param name="request"></param>
+        /// <param name="context"></param>
         /// <returns></returns>
         public static bool IsAjaxRequest(this HttpContext context) {
             return context.Request("X-Requested-With") == "XMLHttpRequest"
