@@ -92,21 +92,21 @@ namespace Quartz.NET.Web.Utility {
         public static void WriteJobAction(JobAction jobAction, string taskName, string groupName,
             string content = null) {
             content =
-                $"{jobAction.ToString()} --  {DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}  --分组：{groupName},作业：{taskName},消息:{content ?? "OK"}\r\n";
+                $"{jobAction.ToString()} --  {DateTime.Now:yyyy-MM-dd HH:mm:ss}  --分组：{groupName},作业：{taskName},消息:{content ?? "OK"}\r\n";
             FileHelper.WriteFile(LogPath, "action.txt", content, true);
         }
 
         public static void WriteAccess(string content = null) {
-            content = $"{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}_{content}\r\n";
+            content = $"{DateTime.Now:yyyy-MM-dd HH:mm:ss}_{content}\r\n";
             FileHelper.WriteFile(LogPath, "access.txt", content, true);
         }
 
         public static string GetAccessLog(int pageSize = 1) {
             var path = LogPath + "access.txt";
             path = path.ReplacePath();
-            if (!File.Exists(path))
-                return "没有找到目录";
-            return string.Join("<br/>", FileHelper.ReadPageLine(path, pageSize, 5000, true).ToList());
+            return !File.Exists(path)
+                ? "没有找到目录"
+                : string.Join("<br/>", FileHelper.ReadPageLine(path, pageSize, 5000, true).ToList());
         }
     }
 }

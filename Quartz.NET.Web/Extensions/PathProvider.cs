@@ -2,12 +2,6 @@
 using Microsoft.AspNetCore.Hosting;
 
 namespace Quartz.NET.Web.Extensions {
-    public interface IPathProvider {
-        string MapPath(string path);
-        string MapPath(string path, bool rootPath);
-        IHostingEnvironment GetHostingEnvironment();
-    }
-
     public class PathProvider : IPathProvider {
         private readonly IHostingEnvironment _hostingEnvironment;
 
@@ -29,8 +23,7 @@ namespace Quartz.NET.Web.Extensions {
         /// <param name="rootPath">获取wwwroot路径</param>
         /// <returns></returns>
         public string MapPath(string path, bool rootPath) {
-            if (rootPath) return Path.Combine(_hostingEnvironment.WebRootPath, path);
-            return Path.Combine(_hostingEnvironment.ContentRootPath, path);
+            return Path.Combine(rootPath ? _hostingEnvironment.WebRootPath : _hostingEnvironment.ContentRootPath, path);
         }
     }
 }

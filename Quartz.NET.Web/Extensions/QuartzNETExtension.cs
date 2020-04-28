@@ -120,7 +120,7 @@ namespace Quartz.NET.Web.Extensions {
                     FileQuartz.WriteJobConfig(_taskList);
                 }
 
-                var job = JobBuilder.Create<HttpResultful>()
+                var job = JobBuilder.Create<HttpRestful>()
                     .WithIdentity(taskOptions.TaskName, taskOptions.GroupName)
                     .Build();
                 var trigger = TriggerBuilder.Create()

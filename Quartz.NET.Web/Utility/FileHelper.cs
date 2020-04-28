@@ -6,7 +6,7 @@ using System.Text;
 using Quartz.NET.Web.Extensions;
 
 namespace Quartz.NET.Web.Utility {
-    public class FileHelper {
+    public static class FileHelper {
         /// <summary>
         ///     通过迭代器读取txt日志内容
         /// </summary>
@@ -64,8 +64,10 @@ namespace Quartz.NET.Web.Utility {
         /// <summary>
         ///     写文件
         /// </summary>
-        /// <param name="Path">文件路径</param>
-        /// <param name="Strings">文件内容</param>
+        /// <param name="path"></param>
+        /// <param name="fileName"></param>
+        /// <param name="content"></param>
+        /// <param name="appendToLast"></param>
         public static void WriteFile(string path, string fileName, string content, bool appendToLast = false) {
             if (!path.EndsWith("\\")) path = path + "\\";
             path = path.ReplacePath();

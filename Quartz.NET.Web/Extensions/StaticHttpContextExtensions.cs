@@ -1,19 +1,13 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using HttpContext = Quartz.NET.Web.Utility.HttpContext;
 
-namespace Quartz.NET.Web.Extensions
-{
-    public static class StaticHttpContextExtensions
-    {
-        public static IApplicationBuilder UseStaticHttpContext(this IApplicationBuilder app)
-        {
+namespace Quartz.NET.Web.Extensions {
+    public static class StaticHttpContextExtensions {
+        public static IApplicationBuilder UseStaticHttpContext(this IApplicationBuilder app) {
             var httpContextAccessor = app.ApplicationServices.GetRequiredService<IHttpContextAccessor>();
-            Utility.HttpContext.Configure(httpContextAccessor);
+            HttpContext.Configure(httpContextAccessor);
             return app;
         }
     }

@@ -9,18 +9,16 @@ using Microsoft.AspNetCore.Http;
 namespace Quartz.NET.Web.Utility {
     public class HttpManager {
         public static string GetUserIP(IHttpContextAccessor httpContextAccessor) {
-            var Request = httpContextAccessor.HttpContext.Request;
-            string realIP = null;
-            string forwarded = null;
+            var request = httpContextAccessor.HttpContext.Request;
             var remoteIpAddress = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
-            if (Request.Headers.ContainsKey("X-Real-IP")) {
-                realIP = Request.Headers["X-Real-IP"].ToString();
-                if (realIP != remoteIpAddress) remoteIpAddress = realIP;
+            if (request.Headers.ContainsKey("X-Real-IP")) {
+                var realIP = request.Headers["X-Real-IP"].ToString();
+                if (realIP != null && realIP != remoteIpAddress) remoteIpAddress = realIP;
             }
 
-            if (Request.Headers.ContainsKey("X-Forwarded-For")) {
-                forwarded = Request.Headers["X-Forwarded-For"].ToString();
-                if (forwarded != remoteIpAddress) remoteIpAddress = forwarded;
+            if (request.Headers.ContainsKey("X-Forwarded-For")) {
+                var forwarded = request.Headers["X-Forwarded-For"].ToString();
+                if (remoteIpAddress != null && forwarded != remoteIpAddress) remoteIpAddress = forwarded;
             }
 
             return remoteIpAddress;

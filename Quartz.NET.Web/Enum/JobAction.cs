@@ -1,7 +1,5 @@
-﻿namespace Quartz.NET.Web.Enum
-{
-    public enum JobAction
-    {
+﻿namespace Quartz.NET.Web.Enum {
+    public enum JobAction {
         新增 = 1,
         删除 = 2,
         修改 = 3,

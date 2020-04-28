@@ -15,11 +15,11 @@ using Quartz.NET.Web.Utility;
 namespace Quartz.NET.Web.Filters {
     public class TaskAuthorizeFilter : IAuthorizationFilter {
         private readonly IHttpContextAccessor _accessor;
-        private readonly IConfiguration configuration;
+        private readonly IConfiguration _configuration;
 
         public TaskAuthorizeFilter(IHttpContextAccessor accessor, IConfiguration configuration) {
             _accessor = accessor;
-            this.configuration = configuration;
+            _configuration = configuration;
         }
 
         public void OnAuthorization(AuthorizationFilterContext context) {
@@ -28,7 +28,7 @@ namespace Quartz.NET.Web.Filters {
                 return;
             if (((ControllerActionDescriptor) context.ActionDescriptor).MethodInfo
                 .CustomAttributes.Any(x => x.AttributeType == typeof(TaskAuthorAttribute))
-                && context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier) != configuration["superToken"])
+                && context.HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier) != _configuration["superToken"])
                 context.Result = new ContentResult {
                     Content = JsonConvert.SerializeObject(new {
                         status = false,

@@ -39,7 +39,7 @@ namespace Quartz.NET.Web.Extensions {
             if (context.Request.Body == null || !context.Request.Body.CanRead)
                 return null;
             if (context.Request.Body.Position > 0) context.Request.Body.Position = 0;
-            string prarameters = null;
+            string parameters;
             var bodyStream = context.Request.Body;
 
             using (var buffer = new MemoryStream()) {
@@ -50,11 +50,11 @@ namespace Quartz.NET.Web.Extensions {
                 bodyStream.Position = 0L;
                 using (var reader = new StreamReader(buffer, Encoding.UTF8)) {
                     buffer.Seek(0, SeekOrigin.Begin);
-                    prarameters = reader.ReadToEnd();
+                    parameters = reader.ReadToEnd();
                 }
             }
 
-            return prarameters;
+            return parameters;
         }
     }
 }
